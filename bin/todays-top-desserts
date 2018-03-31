@@ -1,3 +1,5 @@
 #!/usr/bin/env ruby
 
-puts "Hello World"
+require './lib/todays_top_desserts'
+
+TodaysTopDesserts::CLI.new.call
