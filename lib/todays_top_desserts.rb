@@ -1,5 +1,2 @@
-require "todays_top_desserts/version"
-
-module TodaysTopDesserts
-  # Your code goes here...
-end
+require_relative "todays_top_desserts/version"
+require_relative "todays_top_desserts/cli"
