@@ -57,6 +57,8 @@ class TodaysTopDesserts::CLI
     end
   end
 
+  def goodbye
+    puts "Hope you bake something delicious today! See you later!"
+  end
   
-
 end
