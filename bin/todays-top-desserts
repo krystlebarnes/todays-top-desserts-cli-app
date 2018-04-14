@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
-require './lib/todays_top_desserts'
+require "bundler/setup"
+require "todays_top_desserts"
 
 TodaysTopDesserts::CLI.new.call
