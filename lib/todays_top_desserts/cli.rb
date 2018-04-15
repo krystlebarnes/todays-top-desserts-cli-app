@@ -9,6 +9,9 @@ class TodaysTopDesserts::CLI
   def list_desserts
     puts "Here are today's most made desserts:"
     @recipes = TodaysTopDesserts::Recipe.today
+    @recipes.each.with_index(1) do |recipe, i|
+      puts "#{i}. #{recipe.name}"
+    end
   end
 
   def menu
