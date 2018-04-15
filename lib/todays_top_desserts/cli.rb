@@ -20,7 +20,27 @@ class TodaysTopDesserts::CLI
       puts "Please enter either the number of the recipe you'd like to view, 'list' to see the list of recipes again, or 'exit' to close the program:"
       input = gets.strip.downcase
       if input.to_i > 0
-        puts @recipes[input.to_i-1]
+        the_recipe = @recipes[input.to_i-1]
+        puts ""
+        puts "#{the_recipe.name}"
+        puts "by #{the_recipe.author}"
+        puts ""
+        puts "#{the_recipe.description}"
+        puts ""
+        puts "Ready in #{the_recipe.ready_time} min. (Prep time: #{the_recipe.prep_time} min. Cook time: #{the_recipe.cook_time} min.)"
+        puts "Serving size: #{the_recipe.serving_size}"
+        puts "Calorie count: #{the_recipe.calorie_count}"
+        puts ""
+        puts "INGREDIENTS:"
+        the_recipe.ingredients.each.with_index(1) do |ingredient, i|
+          puts "#{i}. #{ingredient}"
+        end
+        puts ""
+        puts "INSTRUCTIONS:"
+        the_recipe.instructions.each.with_index(1) do |instruction, i|
+          puts "#{i}. #{instruction}"
+        end
+        puts ""
       elsif input == "list"
         list_desserts
       elsif input == "exit"

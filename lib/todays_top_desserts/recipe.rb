@@ -2,7 +2,7 @@ class TodaysTopDesserts::Recipe
   attr_accessor :name, :author, :description, :serving_size, :prep_time, :cook_time, :ready_time, :calorie_count, :ingredients, :instructions, :url
 
   def self.today
-    #returns a bunch of instances of Recipe
+    #scrape Allrecipes and returns a bunch of instances of Recipe
     # puts <<-DOC
     #   1. Isaac's Carrot Cake
     #   2. Brooke's Best Bombshell Brownies
@@ -21,9 +21,9 @@ class TodaysTopDesserts::Recipe
     recipe_1.author = "Kali Peacock"
     recipe_1.description = "A less-dense and wonderfully moist carrot cake with canned mandarin oranges rather than pineapple. A friend shared the recipe with me and I made it to celebrate the birth of my son (a birthday cake). It tastes best if you let it sit in the refrigerator overnight."
     recipe_1.serving_size = 12
-    recipe_1.prep_time = "15 m"
-    recipe_1.cook_time = "40 m"
-    recipe_1.ready_time = "55 m"
+    recipe_1.prep_time = 15
+    recipe_1.cook_time = 40
+    recipe_1.ready_time = 55
     recipe_1.calorie_count = 482
     recipe_1.ingredients = [
       "3 cups all-purpose flour",
