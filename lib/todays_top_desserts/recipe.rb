@@ -16,39 +16,56 @@ class TodaysTopDesserts::Recipe
     #   10. Irish Cream Brownies
     # DOC
 
-    recipe_1 = self.new
-    recipe_1.name = "Isaac's Carrot Cake"
-    recipe_1.author = "Kali Peacock"
-    recipe_1.description = "A less-dense and wonderfully moist carrot cake with canned mandarin oranges rather than pineapple. A friend shared the recipe with me and I made it to celebrate the birth of my son (a birthday cake). It tastes best if you let it sit in the refrigerator overnight."
-    recipe_1.serving_size = 12
-    recipe_1.prep_time = 15
-    recipe_1.cook_time = 40
-    recipe_1.ready_time = 55
-    recipe_1.calorie_count = 482
-    recipe_1.ingredients = [
-      "3 cups all-purpose flour",
-      "2 cups white sugar",
-      "2 1/2 teaspoons baking soda",
-      "2 1/2 teaspoons ground cinnamon",
-      "1 teaspoon salt",
-      "1/4 teaspoon ground nutmeg",
-      "2 cups shredded carrots",
-      "1 (11 ounce) can mandarin oranges, drained",
-      "1 1/4 cups vegetable oil",
-      "3 eggs",
-      "2 teaspoons vanilla extract",
-      "1 teaspoon grated orange zest"
-    ]
-    recipe_1.instructions = [
-      "Preheat oven to 350 degrees F (175 degrees C). Grease a 9x13x2-inch baking dish.",
-      "Whisk flour, sugar, baking soda, ground cinnamon, salt, and nutmeg together in a bowl. Beat carrots, mandarin oranges, oil, eggs, vanilla extract, and orange zest into flour mixture with an electric mixer until batter is smooth, about 2 minutes. Pour batter into prepared baking dish.",
-      "Bake in the preheated oven until a toothpick inserted into the center of the cake comes out clean, 40 to 50 minutes."
-    ]
-    recipe_1.url = "https://www.allrecipes.com/recipe/240469/isaacs-carrot-cake/?internalSource=streams&referringId=79&referringContentType=recipe%20hub&clickId=st_recipes_mades"
+    self.scrape_recipes
+  end
 
-    [recipe_1]
+  def self.scrape_recipes
+    # recipe_1 = self.new
+    # recipe_1.name = "Isaac's Carrot Cake"
+    # recipe_1.author = "Kali Peacock"
+    # recipe_1.description = "A less-dense and wonderfully moist carrot cake with canned mandarin oranges rather than pineapple. A friend shared the recipe with me and I made it to celebrate the birth of my son (a birthday cake). It tastes best if you let it sit in the refrigerator overnight."
+    # recipe_1.serving_size = 12
+    # recipe_1.prep_time = 15
+    # recipe_1.cook_time = 40
+    # recipe_1.ready_time = 55
+    # recipe_1.calorie_count = 482
+    # recipe_1.ingredients = [
+    #   "3 cups all-purpose flour",
+    #   "2 cups white sugar",
+    #   "2 1/2 teaspoons baking soda",
+    #   "2 1/2 teaspoons ground cinnamon",
+    #   "1 teaspoon salt",
+    #   "1/4 teaspoon ground nutmeg",
+    #   "2 cups shredded carrots",
+    #   "1 (11 ounce) can mandarin oranges, drained",
+    #   "1 1/4 cups vegetable oil",
+    #   "3 eggs",
+    #   "2 teaspoons vanilla extract",
+    #   "1 teaspoon grated orange zest"
+    # ]
+    # recipe_1.instructions = [
+    #   "Preheat oven to 350 degrees F (175 degrees C). Grease a 9x13x2-inch baking dish.",
+    #   "Whisk flour, sugar, baking soda, ground cinnamon, salt, and nutmeg together in a bowl. Beat carrots, mandarin oranges, oil, eggs, vanilla extract, and orange zest into flour mixture with an electric mixer until batter is smooth, about 2 minutes. Pour batter into prepared baking dish.",
+    #   "Bake in the preheated oven until a toothpick inserted into the center of the cake comes out clean, 40 to 50 minutes."
+    # ]
+    # recipe_1.url = "https://www.allrecipes.com/recipe/240469/isaacs-carrot-cake/?internalSource=streams&referringId=79&referringContentType=recipe%20hub&clickId=st_recipes_mades"
+    #
+    # [recipe_1]
+
+    # Go to Allrecipes desserts page, find the recipes
+    # Extract the properties
+    # intantiate a recipe
+
+    recipes = []
+
+    recipes << self.scrape_allrecipes
+
+    recipes
 
   end
 
-
+  def self.scrape_allrecipes
+    doc = Nokogiri::HTML(open("https://www.allrecipes.com/recipes/79/desserts/"))
+    binding.pry
+  end
 end
