@@ -86,8 +86,24 @@ class Scraper
 
     recipe = {}
 
-    recipe[:author] = page.css(".submitter__name").text
-    recipe[:description] = page.css(".")
+    recipe[:author] = page.css(".submitter__name").text.strip
+    recipe[:description] = page.css(".submitter__description").text.strip
+    recipe[:serving_size] = page.css(".servings-count").text.strip
+    recipe[:prep_time] = page.css("time[itemProp='prepTime'] span.prepTime__item--time").text.strip
+    recipe[:cook_time] = page.css("time[itemProp='cookTime'] span.prepTime__item--time").text.strip
+    recipe[:ready_time] = page.css("time[itemProp='totalTime'] span.prepTime__item--time").text.strip
+    recipe[:calorie_count] = page.css(".calorie-count").text.strip
+
+    recipe[:ingredients] = []
+    page.css("recipe-ingred_txt added").each do |ingredient|
+      recipe[:ingredients] << ingredient.text.strip
+    end
+
+    recipe[:instructions] = []
+    page.css("recipe-directions__list--item").each do |instruction|
+      recipe[:instructions] << instruction.text.strip
+    end
+   
   end
 
 end
