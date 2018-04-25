@@ -9,18 +9,16 @@ class TodaysTopDesserts::CLI
   end
 
   def create_recipes
-    recipes_array = Scraper.scrape_desserts
+    recipes_array = TodaysTopDesserts::Scraper.scrape_desserts
     TodaysTopDesserts::Recipe.create_from_collection(recipes_array)
   end
 
   def add_attributes_to_recipes
     TodaysTopDesserts::Recipe.today.each do |recipe|
-      attributes = Scraper.scrape_recipes(recipe.url)
+      attributes = TodaysTopDesserts::Scraper.scrape_recipes(recipe.url)
       recipe.add_recipe_attributes(attributes)
     end
   end
-
-
 
   def list_desserts
     puts "Here are today's most made desserts:"

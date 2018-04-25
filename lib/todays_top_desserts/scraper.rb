@@ -1,4 +1,8 @@
-class Scraper
+require 'open-uri'
+require 'nokogiri'
+require 'pry'
+
+class TodaysTopDesserts::Scraper
   # def self.today
   #   #scrape Allrecipes and returns a bunch of instances of Recipe
   #   # puts <<-DOC
@@ -65,16 +69,16 @@ class Scraper
   def self.scrape_desserts
     page = Nokogiri::HTML(open("https://www.allrecipes.com/recipes/79/desserts/"))
 
-    recipes = []
-
-    page.css("a[data-click-id='st_recipes_mades']").each do |recipe|
-      recipes << {
-        :name => recipe.css("img").attribute("title").text
-        :url => recipe.css("a").attribute("href").value
+    desserts = []
+binding.pry
+    page.css("article.list-recipes")[0].css("li").each do |dessert|
+      desserts << {
+        :name => dessert.css("img").attr("title").text,
+        :url => dessert.css("a").attr("href").value
       }
     end
 
-    recipes
+    desserts
 
     # name = doc.css(".taste-recipe-image").attr('title').text
     # url = doc.css("a[data-click-id='st_recipes_mades']").attr('href').text
@@ -103,7 +107,7 @@ class Scraper
     page.css("recipe-directions__list--item").each do |instruction|
       recipe[:instructions] << instruction.text.strip
     end
-   
+
   end
 
 end
