@@ -15,7 +15,7 @@ class TodaysTopDesserts::Recipe
   end
 
   def add_recipe_attributes(attributes_hash)
-    binding.pry
+    #binding.pry
     attributes_hash.each {|key, value| self.send(("#{key}="), value)}
     self
   end

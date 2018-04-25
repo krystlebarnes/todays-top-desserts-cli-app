@@ -93,9 +93,9 @@ class TodaysTopDesserts::Scraper
     recipe[:author] = page.css(".submitter__name").text.strip
     recipe[:description] = page.css(".submitter__description").text.strip
     recipe[:serving_size] = page.css("#metaRecipeServings").attr("content").value
-    recipe[:prep_time] = page.css("time[itemprop='prepTime'] span").text.strip
-    recipe[:cook_time] = page.css("time[itemprop='cookTime'] span").text.strip
-    recipe[:ready_time] = page.css("time[itemprop='totalTime'] span").text.strip
+    recipe[:prep_time] = page.css("time[itemprop='prepTime']").text.strip
+    recipe[:cook_time] = page.css("time[itemprop='cookTime']").text.strip
+    recipe[:ready_time] = page.css("time[itemprop='totalTime']").text.strip
     recipe[:calorie_count] = page.css(".calorie-count").text.strip
 
     recipe[:ingredients] = []
@@ -104,9 +104,11 @@ class TodaysTopDesserts::Scraper
     end
 
     recipe[:instructions] = []
-    page.css("ol[itemprop='recipeInstructions'] span").each do |instruction|
+    page.css("ol[itemprop='recipeInstructions'] span.recipe-directions__list--item").each do |instruction|
       recipe[:instructions] << instruction.text.strip
     end
+
+    recipe
 
   end
 
