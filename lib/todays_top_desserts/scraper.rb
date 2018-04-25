@@ -70,12 +70,12 @@ class TodaysTopDesserts::Scraper
     page = Nokogiri::HTML(open("https://www.allrecipes.com/recipes/79/desserts/"))
 
     desserts = []
-binding.pry
-    page.css("article.list-recipes")[0].css("li").each do |dessert|
-      desserts << {
-        :name => dessert.css("img").attr("title").text,
-        :url => dessert.css("a").attr("href").value
-      }
+
+    page.css("article.list-recipes")[0].css("li")[0..9].each do |dessert|
+        desserts << {
+          :name => dessert.css("img").attr("title").text,
+          :url => dessert.css("a").attr("href").value
+        }
     end
 
     desserts
@@ -86,6 +86,7 @@ binding.pry
   end
 
   def self.scrape_recipe(recipe_url)
+    binding.pry
     page = Nokogiri::HTML(open("recipe_url"))
 
     recipe = {}

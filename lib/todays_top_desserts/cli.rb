@@ -15,7 +15,7 @@ class TodaysTopDesserts::CLI
 
   def add_attributes_to_recipes
     TodaysTopDesserts::Recipe.today.each do |recipe|
-      attributes = TodaysTopDesserts::Scraper.scrape_recipes(recipe.url)
+      attributes = TodaysTopDesserts::Scraper.scrape_recipe(recipe.url)
       recipe.add_recipe_attributes(attributes)
     end
   end
