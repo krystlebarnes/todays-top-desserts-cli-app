@@ -9,11 +9,15 @@ class TodaysTopDesserts::CLI
   end
 
   def create_recipes
+    #scrapes name and url of recipes
     recipes_array = TodaysTopDesserts::Scraper.scrape_desserts
+
+    #creates recipes using the array from the scrape_desserts method
     TodaysTopDesserts::Recipe.create_from_collection(recipes_array)
   end
 
   def add_attributes_to_recipes
+    #scrapes additional attributes from the individual recipe's page and adds the attributes to the Recipe
     TodaysTopDesserts::Recipe.today.each do |recipe|
       attributes = TodaysTopDesserts::Scraper.scrape_recipe(recipe.url)
       recipe.add_recipe_attributes(attributes)
@@ -62,7 +66,8 @@ class TodaysTopDesserts::CLI
         list_desserts
       elsif input == "exit"
       else
-        "Not sure what you meant by that."
+        puts ""
+        puts "Not sure what you meant by that."
       end
     end
   end
