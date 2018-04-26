@@ -44,7 +44,7 @@ class TodaysTopDesserts::CLI
       if input.to_i > 0 && input.to_i < 11
         the_recipe = @recipes[input.to_i-1]
         puts ""
-        puts "#{the_recipe.name}"
+        puts "#{the_recipe.name}".colorize(:cyan).bold
         puts "by #{the_recipe.author}"
         puts ""
         puts "#{the_recipe.description}"
@@ -53,12 +53,12 @@ class TodaysTopDesserts::CLI
         puts "Serving size: #{the_recipe.serving_size}"
         puts "Calorie count: #{the_recipe.calorie_count}"
         puts ""
-        puts "INGREDIENTS:"
+        puts "INGREDIENTS:".colorize(:light_red).underline
         the_recipe.ingredients.each do |ingredient|
           puts "#{ingredient}"
         end
         puts ""
-        puts "INSTRUCTIONS:"
+        puts "INSTRUCTIONS:".colorize(:light_red).underline
         the_recipe.instructions.each.with_index(1) do |instruction, i|
           puts "#{i}. #{instruction}"
         end

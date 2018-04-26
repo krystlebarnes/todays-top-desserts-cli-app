@@ -1,8 +1,6 @@
 # TodaysTopDesserts
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/todays_top_desserts`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This Ruby gem installs a CLI that gives you the recipes for the top ten desserts being made today according to Allrecipes.com.
 
 ## Installation
 
@@ -22,7 +20,9 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Run the CLI by entering in the following line:
+
+    $ todays-top-desserts
 
 ## Development
 
