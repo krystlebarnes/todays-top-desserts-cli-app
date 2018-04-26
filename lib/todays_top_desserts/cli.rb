@@ -30,7 +30,7 @@ class TodaysTopDesserts::CLI
     puts ""
     @recipes = TodaysTopDesserts::Recipe.today
     @recipes.each.with_index(1) do |recipe, i|
-      puts "#{i}. #{recipe.name}"
+      puts "#{i}.".colorize(:light_black) + " #{recipe.name}"
     end
 
   end
@@ -45,13 +45,15 @@ class TodaysTopDesserts::CLI
         the_recipe = @recipes[input.to_i-1]
         puts ""
         puts "#{the_recipe.name}".colorize(:cyan).bold
-        puts "by #{the_recipe.author}"
+        puts "by #{the_recipe.author}" if the_recipe.author != ""
         puts ""
-        puts "#{the_recipe.description}"
+        puts "#{the_recipe.description}".italic if the_recipe.description != ""
         puts ""
-        puts "Ready in #{the_recipe.ready_time}. (Prep time: #{the_recipe.prep_time}. Cook time: #{the_recipe.cook_time}.)"
-        puts "Serving size: #{the_recipe.serving_size}"
-        puts "Calorie count: #{the_recipe.calorie_count}"
+        puts "Ready in: ".colorize(:light_black) + "#{the_recipe.ready_time}" if the_recipe.ready_time != ""
+        puts "Prep time: ".colorize(:light_black) + "#{the_recipe.prep_time}" if the_recipe.prep_time != ""
+        puts "Cook time: ".colorize(:light_black) + "#{the_recipe.cook_time}" if the_recipe.cook_time != ""
+        puts "Serving size: ".colorize(:light_black) + "#{the_recipe.serving_size}" if the_recipe.serving_size != ""
+        puts "Calorie count: ".colorize(:light_black) + "#{the_recipe.calorie_count}" if the_recipe.calorie_count != ""
         puts ""
         puts "INGREDIENTS:".colorize(:light_red).underline
         the_recipe.ingredients.each do |ingredient|
@@ -60,7 +62,7 @@ class TodaysTopDesserts::CLI
         puts ""
         puts "INSTRUCTIONS:".colorize(:light_red).underline
         the_recipe.instructions.each.with_index(1) do |instruction, i|
-          puts "#{i}. #{instruction}"
+          puts "#{i}.".colorize(:light_black) + " #{instruction}"
         end
       elsif input == "list"
         list_desserts
