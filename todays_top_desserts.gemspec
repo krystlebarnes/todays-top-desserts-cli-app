@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["krystlebarnes"]
   spec.email         = ["krystlecbarnes@gmail.com"]
 
-  spec.summary       = "Find the recipes for today's top desserts"
-  spec.description   = "This Ruby gem installs a CLI that gives you the recipes for the top ten desserts being made today according to Allrecipes.com."
+  spec.summary       = %q{Find the recipes for today's top desserts.}
+  spec.description   = %q{This Ruby gem installs a CLI that gives you the recipes for the top ten desserts being made today according to Allrecipes.com.}
   spec.homepage      = "https://github.com/krystlebarnes/todays-top-desserts-cli-app"
   spec.license       = "MIT"
 
@@ -27,7 +27,7 @@ Gem::Specification.new do |spec|
     f.match(%r{^(test|spec|features)/})
   end
   spec.bindir        = "bin"
-  spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
+  spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
   spec.add_development_dependency "bundler", "~> 1.16"
