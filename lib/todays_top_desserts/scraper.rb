@@ -4,16 +4,11 @@ class TodaysTopDesserts::Scraper
     #returns an array of recipes with a name and url.
     page = Nokogiri::HTML(open("https://www.allrecipes.com/recipes/79/desserts/"))
 
-    desserts = []
-
-    page.css("article.list-recipes")[0].css("li")[0..9].each do |dessert|
-        desserts << {
-          :name => dessert.css("img").attr("title").text,
+    page.css("article.list-recipes")[0].css("li")[0..9].collect do |dessert|
+        {:name => dessert.css("img").attr("title").text,
           :url => dessert.css("a").attr("href").value
         }
     end
-
-    desserts
 
   end
 
@@ -31,15 +26,9 @@ class TodaysTopDesserts::Scraper
     recipe[:ready_time] = page.css("time[itemprop='totalTime']").text.strip
     recipe[:calorie_count] = page.css(".calorie-count").text.strip
 
-    recipe[:ingredients] = []
-    page.css("span[itemprop='ingredients']").each do |ingredient|
-      recipe[:ingredients] << ingredient.text.strip
-    end
+    recipe[:ingredients] = page.css("span[itemprop='ingredients']").collect {|ingredient| ingredient.text.strip}
 
-    recipe[:instructions] = []
-    page.css("ol[itemprop='recipeInstructions'] span.recipe-directions__list--item").each do |instruction|
-      recipe[:instructions] << instruction.text.strip
-    end
+    recipe[:instructions] = page.css("ol[itemprop='recipeInstructions'] span.recipe-directions__list--item").collect {|instruction| instruction.text.strip}
 
     recipe
 

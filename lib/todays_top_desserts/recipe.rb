@@ -12,7 +12,7 @@ class TodaysTopDesserts::Recipe
   def self.create_from_collection(recipes_array)
     #creates new recipes from an array of hashes that include recipe attributes
     recipes_array.each do |hash|
-      recipe = TodaysTopDesserts::Recipe.new(hash)
+      TodaysTopDesserts::Recipe.new(hash)
     end
   end
 

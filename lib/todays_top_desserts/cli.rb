@@ -42,28 +42,8 @@ class TodaysTopDesserts::CLI
       puts "Please enter either the number of the recipe you'd like to view, 'list' to see the list of recipes again, or 'exit' to close the program:"
       input = gets.strip.downcase
       if input.to_i > 0 && input.to_i < 11
-        the_recipe = @recipes[input.to_i-1]
-        puts ""
-        puts "#{the_recipe.name}".colorize(:cyan).bold
-        puts "by #{the_recipe.author}" if the_recipe.author != ""
-        puts ""
-        puts "#{the_recipe.description}".italic if the_recipe.description != ""
-        puts ""
-        puts "Ready in: ".colorize(:light_black) + "#{the_recipe.ready_time}" if the_recipe.ready_time != ""
-        puts "Prep time: ".colorize(:light_black) + "#{the_recipe.prep_time}" if the_recipe.prep_time != ""
-        puts "Cook time: ".colorize(:light_black) + "#{the_recipe.cook_time}" if the_recipe.cook_time != ""
-        puts "Serving size: ".colorize(:light_black) + "#{the_recipe.serving_size}" if the_recipe.serving_size != ""
-        puts "Calorie count: ".colorize(:light_black) + "#{the_recipe.calorie_count}" if the_recipe.calorie_count != ""
-        puts ""
-        puts "INGREDIENTS:".colorize(:light_red).underline
-        the_recipe.ingredients.each do |ingredient|
-          puts "#{ingredient}"
-        end
-        puts ""
-        puts "INSTRUCTIONS:".colorize(:light_red).underline
-        the_recipe.instructions.each.with_index(1) do |instruction, i|
-          puts "#{i}.".colorize(:light_black) + " #{instruction}"
-        end
+        @the_recipe = @recipes[input.to_i-1]
+        puts_recipe
       elsif input == "list"
         list_desserts
       elsif input == "exit"
@@ -71,6 +51,30 @@ class TodaysTopDesserts::CLI
         puts ""
         puts "Not sure what you meant by that."
       end
+    end
+  end
+
+  def puts_recipe
+    puts ""
+    puts "#{@the_recipe.name}".colorize(:cyan).bold
+    puts "by #{@the_recipe.author}" if @the_recipe.author != ""
+    puts ""
+    puts "#{@the_recipe.description}".italic if @the_recipe.description != ""
+    puts ""
+    puts "Ready in: ".colorize(:light_black) + "#{@the_recipe.ready_time}" if @the_recipe.ready_time != ""
+    puts "Prep time: ".colorize(:light_black) + "#{@the_recipe.prep_time}" if @the_recipe.prep_time != ""
+    puts "Cook time: ".colorize(:light_black) + "#{@the_recipe.cook_time}" if @the_recipe.cook_time != ""
+    puts "Serving size: ".colorize(:light_black) + "#{@the_recipe.serving_size}" if @the_recipe.serving_size != ""
+    puts "Calorie count: ".colorize(:light_black) + "#{@the_recipe.calorie_count}" if @the_recipe.calorie_count != ""
+    puts ""
+    puts "INGREDIENTS:".colorize(:light_red).underline
+    @the_recipe.ingredients.each do |ingredient|
+      puts "#{ingredient}"
+    end
+    puts ""
+    puts "INSTRUCTIONS:".colorize(:light_red).underline
+    @the_recipe.instructions.each.with_index(1) do |instruction, i|
+      puts "#{i}.".colorize(:light_black) + " #{instruction}"
     end
   end
 
